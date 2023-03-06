@@ -1,3 +1,7 @@
+var firebase = require("firebase/app");
+require("firebase/auth");
+require("firebase/database");
+
 const express = require("express");
 const path = require("path");
 const app = express();
@@ -6,7 +10,7 @@ const twit = require("twit");
 const passport = require("passport");
 const Strategy = require("passport-twitter").Strategy;
 const axios = require("axios");
-const firebase = require("firebase");
+//const firebase = require("firebase");
 var cors = require("cors");
 app.use(cors());
 const PORT = process.env.PORT || 5000;
