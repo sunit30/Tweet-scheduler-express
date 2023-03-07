@@ -124,14 +124,20 @@ app.use(passport.session());
 // });
 
 app.get("/login", passport.authenticate("twitter"));
+let baseURL = "";
+if (process.env.NODE_ENV === "development") {
+  baseURL = "http://localhost:3000/";
+} else {
+  baseURL = "https://tiny-basbousa-345207.netlify.app/";
+}
 
 app.get(
   "/oauth/callback",
   passport.authenticate("twitter", {
-    failureRedirect: "http://localhost:3000/",
+    failureRedirect: baseURL,
   }),
   function (req, res) {
-    res.redirect("http://localhost:3000/");
+    res.redirect(baseURL);
   }
 );
 
@@ -149,7 +155,7 @@ app.get("/logout", function (req, res) {
       .ref("auth/")
       .remove()
       .then(() => {
-        res.redirect("http://localhost:3000/");
+        res.redirect(baseURL);
       });
   });
 });
