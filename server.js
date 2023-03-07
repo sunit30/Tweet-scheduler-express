@@ -28,6 +28,12 @@ firebase.initializeApp(firebaseConfig);
 
 var T;
 //app.use(express.static(path.join(__dirname, "public")));
+let baseURLencoded = "";
+if (process.env.NODE_ENV === "development") {
+  baseURLencoded = encodeURI("http://localhost:3000/oauth/callback");
+} else {
+  baseURLencoded = encodeURI("https://tweet-scheduler-express.onrender.com/oauth/callback");
+}
 
 passport.use(
   new Strategy(
@@ -36,7 +42,7 @@ passport.use(
       consumerKey: "UUzFXvVsNE5wX8ZN1LUQGx0wi",
       //consumerSecret: process.env["TWITTER_CONSUMER_SECRET"],
       consumerSecret: "CuW0hIM02NaLaMkuDgVBcy60XAsuh4gudlj7j54rSzt0lQNnyU",
-      callbackURL: encodeURI("https://tweet-scheduler-express.onrender.com/oauth/callback"),
+      callbackURL: baseURLencoded,
       //proxy: trustProxy,
     },
     function (token, tokenSecret, profile, cb) {
