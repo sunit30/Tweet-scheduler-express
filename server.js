@@ -36,7 +36,7 @@ passport.use(
       consumerKey: "UUzFXvVsNE5wX8ZN1LUQGx0wi",
       //consumerSecret: process.env["TWITTER_CONSUMER_SECRET"],
       consumerSecret: "CuW0hIM02NaLaMkuDgVBcy60XAsuh4gudlj7j54rSzt0lQNnyU",
-      callbackURL: encodeURIComponent("/oauth/callback"),
+      callbackURL: encodeURI("https://tweet-scheduler-express.onrender.com/oauth/callback"),
       //proxy: trustProxy,
     },
     function (token, tokenSecret, profile, cb) {
